@@ -7,7 +7,7 @@
     body {
       margin: 0;
       padding: 0;
-      font-family: sans-serif;
+      font-family: 'Segoe UI', system-ui, sans-serif;
       background-color: #fff6e0;
       display: flex;
       align-items: center;
@@ -19,6 +19,7 @@
       text-align: center;
       max-width: 100%;
       width: 100%;
+      padding: 20px;
     }
 
     .options {
@@ -34,6 +35,7 @@
       background: #ffcccc;
       cursor: pointer;
       transition: 0.3s;
+      font-family: inherit;
     }
 
     .options button:hover {
@@ -45,29 +47,36 @@
     }
 
     h1, h2 {
-      font-size: 36px;
+      font-size: 38px;
       font-weight: bold;
+      font-family: inherit;
     }
 
     .video-container {
-      width: 90%;
-      max-width: 700px;
+      width: 100%;
+      max-width: 480px;
+      aspect-ratio: 9 / 16;
       margin: 0 auto;
+      background-color: #fff4db;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
 
     video {
       width: 100%;
-      max-height: 520px;
-      height: auto;
-      border-radius: 10px;
-      object-fit: contain;
+      height: 100%;
+      object-fit: cover;
       display: block;
-      margin: 0 auto;
       pointer-events: none;
     }
 
     .controls {
-      margin-top: 12px;
+      background: #fff6e0;
+      padding: 10px 0;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -79,12 +88,13 @@
 
     .controls button {
       margin: 0 10px;
-      padding: 10px 20px;
-      font-size: 16px;
+      padding: 8px 18px;
+      font-size: 14px;
       background: #ffe0e0;
       border: none;
       border-radius: 6px;
       cursor: pointer;
+      font-family: inherit;
     }
 
     .controls button:hover {
@@ -93,7 +103,7 @@
 
     input[type=range] {
       width: 70%;
-      max-width: 400px;
+      max-width: 500px;
       appearance: none;
       height: 6px;
       border-radius: 5px;
@@ -109,22 +119,32 @@
       border-radius: 50%;
       background: #ff6666;
     }
+
+    @media (max-width: 480px) {
+      h1, h2 {
+        font-size: 24px;
+      }
+
+      .video-container {
+        max-width: 95vw;
+      }
+    }
   </style>
 </head>
 <body>
   <div id="quiz" class="container">
-    <h1>Kinsay pinaka gwapa sa ilahang tulo? 😏</h1>
+    <h1>kinsay pinaka gwapa sa ilahang tulo? 🤔</h1>
     <div class="options">
       <button onclick="showWrong()">BINI AIAH</button>
       <button onclick="showWrong()">BINI MALOI</button>
-      <button onclick="showWrong()">BINI MIKHA</button>
+      <button onclick="showWrong()">BINI COLET</button>
     </div>
   </div>
 
   <div id="popup" class="container hidden">
     <h2>SYEMPRE IKAW! 🫶</h2>
     <div class="video-container">
-      <video id="crushVid" autoplay playsinline>
+      <video id="crushVid" autoplay playsinline muted>
         <source src="crush_video.mp4" type="video/mp4">
         Your browser does not support the video tag.
       </video>
@@ -145,7 +165,6 @@
     function showWrong() {
       document.getElementById("quiz").style.display = "none";
       document.getElementById("popup").classList.remove("hidden");
-
       video.muted = false;
       video.currentTime = 0;
       video.play();
@@ -175,4 +194,3 @@
   </script>
 </body>
 </html>
-"""
